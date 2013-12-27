@@ -1,0 +1,82 @@
+
+Building Your First App
+http://developer.android.com/training/basics/firstapp/index.html
+
+Building a Simple User Inerface
+http://developer.android.com/training/basics/firstapp/building-ui.html
+
+
+Original RelativeLayout with TextView
+=======================================
+
+The generated activity_main.xml file is with a RelativeLayout root view 
+and a TextView child view.
+
+
+Replace it with LinearLayout and EditText
+===========================================
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal" >
+  </LinearLayout>
+
+    <EditText android:id="@+id/edit_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_message" />
+
+
+Add a string
+==============
+
+In strings.xml:
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <resources>
+      <string name="app_name">My First App</string>
+      <string name="edit_message">Enter a message</string>
+      <string name="button_send">Send</string>
+      <string name="action_settings">Settings</string>
+      <string name="title_activity_main">MainActivity</string>
+  </resources>
+
+
+Add a button
+===============
+
+Now add a <Button> to the layout, immediately following the <EditText> element:
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_send" />
+
+
+Complete Layout
+==================
+
+Use weight to fill the unused space. and 0dp to make it efficient. 
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+      <EditText android:id="@+id/edit_message"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:hint="@string/edit_message" />
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/button_send" />
+  </LinearLayout>
+
+
+
