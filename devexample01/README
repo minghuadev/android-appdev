@@ -1,0 +1,35 @@
+
+Building Your First App
+http://developer.android.com/training/basics/firstapp/index.html
+
+
+Command Line
+==============
+
+Create a project:
+
+  android list targets
+
+  android create project --target <target-id> --name MyFirstApp \
+  --path <path-to-workspace>/MyFirstApp --activity MainActivity \
+  --package com.example.myfirstapp
+
+Do this from the root directory of the project:
+
+  ant debug
+
+Install:
+
+  adb install bin/MyFirstApp-debug.apk
+
+Launch emulator manager:
+
+  android avd
+
+
+Tags
+=======
+
+tag01original
+
+
