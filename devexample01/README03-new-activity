@@ -1,0 +1,92 @@
+
+Building Your First App
+http://developer.android.com/training/basics/firstapp/index.html
+
+Building a Simple User Inerface
+http://developer.android.com/training/basics/firstapp/building-ui.html
+
+Starting Another Activity
+http://developer.android.com/training/basics/firstapp/starting-activity.html
+
+
+Complete Layout from previous step
+====================================
+
+Use weight to fill the unused space. and 0dp to make it efficient. 
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+      <EditText android:id="@+id/edit_message"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:hint="@string/edit_message" />
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/button_send" />
+  </LinearLayout>
+
+
+Respond to the button
+========================
+
+Add to activity_main.xml the android:onClick attribute
+
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/button_send"
+      android:onClick="sendMessage" />
+
+Add to MainActivity class the corresponding method:
+
+  /** Called when the user clicks the Send button */
+  public void sendMessage(View view) {
+      // Do something in response to button
+  }
+
+This requires that you import the View class:
+
+  import android.view.View;
+
+
+Build an Intent
+==================
+
+In the button handler:
+
+  Intent intent = new Intent(this, DisplayMessageActivity.class);
+  EditText editText = (EditText) findViewById(R.id.edit_message);
+  String message = editText.getText().toString();
+  intent.putExtra(EXTRA_MESSAGE, message);
+
+An Intent can carry a collection of various data types as key-value pairs 
+called extras. The putExtra() method takes the key name in the first parameter 
+and the value in the second parameter.
+
+In order for the next activity to query the extra data, you should define 
+the key for your intent's extra using a public constant. So add the EXTRA_MESSAGE 
+definition to the top of the MainActivity class:
+
+  public class MainActivity extends Activity {
+      public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+      ...
+  }
+
+
+Start a second Activity
+==========================
+
+Call startActivity() and pass it your Intent. 
+
+
+Create the second activity
+============================
+
+Create an android blank activity. Change the name, title, and parent. 
+
