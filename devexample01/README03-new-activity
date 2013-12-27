@@ -90,3 +90,47 @@ Create the second activity
 
 Create an android blank activity. Change the name, title, and parent. 
 
+
+Modify the second activity
+============================
+
+Remove onCreateOptionsMenu() as you will not need it. 
+
+Add title string. And use label to refer to the title string in manifest:
+
+            android:label="@string/title_activity_display_message"
+
+
+Extract Intent and Display the Message
+========================================
+
+Every Activity is invoked by an Intent. You can get the Intent that 
+started your activity by calling getIntent() and retrieve the data contained 
+within it.
+
+In the DisplayMessageActivity class’s onCreate() method, get the intent and 
+extract the message delivered by MainActivity:
+
+  Intent intent = getIntent();
+  String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+The complete onCreate() shall look like: 
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+  
+      // Get the message from the intent
+      Intent intent = getIntent();
+      String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+  
+      // Create the text view
+      TextView textView = new TextView(this);
+      textView.setTextSize(40);
+      textView.setText(message);
+  
+      // Set the text view as the activity layout
+      setContentView(textView);
+  }
+
+
