@@ -27,6 +27,15 @@ Launch emulator manager:
   android avd
 
 
+Source Files to be used as a project
+======================================
+
+All these source files can be imported into an android project with 
+existing source code. But it needs also the libs/android-support-v4.jar 
+to be placed in the new project directory. The jar can be found at 
+adt.../sdk/extras/android/support/v4/.
+
+
 Tags
 =======
 
