@@ -1,0 +1,87 @@
+
+Android HTTP Access - Tutorial 
+http://www.vogella.com/articles/AndroidNetworking/article.html
+referrer: http://stackoverflow.com/questions/16001902/android-https-request
+search words: android https request
+
+
+This article describes how to access web resources via HTTP in Android. 
+It is based on Eclipse 3.7, Java 1.6 and Android 4.0 (Ice Cream Sandwich). 
+
+
+Android contains the standard Java network java.net package which can be used 
+to access network resources. Android also contains the Apache HttpClient library.
+
+The base class for HTTP network access in the java.net package is the HttpURLConnection class.
+
+The preferred way of accessing the Internet according to Google is the HttpURLConnection class, 
+as Google is focusing their efforts on improving this implementation. 
+
+
+To access the Internet your application requires the android.permission.INTERNET permission.
+
+To check the network state your application requires the android.permission.ACCESS_NETWORK_STATE permission. 
+
+
+If you are targeting Android 3.0 or higher, you can turn this (strict mode) check 
+off via the following code at the beginning of your onCreate() method of your activity.
+
+  StrictMode.ThreadPolicy policy = new StrictMode.
+  ThreadPolicy.Builder().permitAll().build();
+  StrictMode.setThreadPolicy(policy); 
+
+
+Request HTTP
+==============
+
+// Somewhere in your code this is called
+// in a thread which is not the user interface
+// thread
+
+try {
+  URL url = new URL("http://www.vogella.com");
+  HttpURLConnection con = (HttpURLConnection) url
+    .openConnection();
+  readStream(con.getInputStream());
+  } catch (Exception e) {
+  e.printStackTrace();
+}
+
+private void readStream(InputStream in) {
+  BufferedReader reader = null;
+  try {
+    reader = new BufferedReader(new InputStreamReader(in));
+    String line = "";
+    while ((line = reader.readLine()) != null) {
+      System.out.println(line);
+    }
+  } catch (IOException e) {
+    e.printStackTrace();
+  } finally {
+    if (reader != null) {
+      try {
+        reader.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+} 
+
+
+Check Network State
+=====================
+
+public boolean isNetworkAvailable() {
+    ConnectivityManager cm = (ConnectivityManager) 
+      getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+    // if no network is available networkInfo will be null
+    // otherwise check if we are connected
+    if (networkInfo != null && networkInfo.isConnected()) {
+        return true;
+    }
+    return false;
+} 
+
+
