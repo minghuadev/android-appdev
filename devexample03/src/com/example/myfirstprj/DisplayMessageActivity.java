@@ -12,8 +12,9 @@ import android.os.StrictMode;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
@@ -23,8 +24,9 @@ public class DisplayMessageActivity extends Activity {
 	static final private String passcode = "password";
 	static final private String cardcode = "LZ0GjL36";
 	
-	private EditText _txtview = null;
+	private TextView _txtview = null;
 	private boolean  _allownet = false;
+	private String   _setmsg  = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +41,16 @@ public class DisplayMessageActivity extends Activity {
 	    // Get the message from the intent
 	    Intent intent = getIntent();
 	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+	    _setmsg = message;
 
 	    // Create the text view
 	    if ( _txtview == null ) {
 	        //_txtview = new TextView(this);
-	    	_txtview = (EditText) findViewById(R.id.display_message);
-	        _txtview.setTextSize(14);
+	    	_txtview = (TextView) findViewById(R.id.display_message);
+	        _txtview.setTextSize(12);
 	        _txtview.setHorizontalScrollBarEnabled(true);
 	        _txtview.setVerticalScrollBarEnabled(true);
+	        _txtview.setMovementMethod(new ScrollingMovementMethod());
 	        
 	        //_txtview.setTransformationMethod(
 	        //					SingleLineTransformationMethod.getInstance());
@@ -100,11 +104,13 @@ public class DisplayMessageActivity extends Activity {
         case R.id.action_search:
             //openSearch();
         	if ( _txtview != null ) {
-        		_txtview.setText( _txtview.getText() + " search ");
+        	    String s1 = " search ";
+        	    if ( _setmsg != null ) s1 = _setmsg + s1;
         		if ( _allownet ) {
+            		_txtview.setText( s1);
 	        		Netreq nrq = new Netreq();
 	        		String result = nrq.getData();
-	        		_txtview.setText( _txtview.getText() + "\n\n" + result + "\n");
+	        		_txtview.setText( s1 + "\n\n" + result + "\n");
         		} else {
 	        		_txtview.setText( _txtview.getText() + "\n\n" + 
 	        							"No net access allowed" + "\n");
