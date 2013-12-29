@@ -1,5 +1,6 @@
 
 Setup: 
+========
 
 adt-bundle-linux-x86-20131030.zip
 
@@ -8,6 +9,16 @@ modify adt-bundle-linux-x86-20131030/eclipse/eclipse.ini to have this:
 
 
 Run:
+======
 
 Put jre path to the PATH, and run eclipse.
+
+
+Directories:
+==============
+
+devexample01  two screen android getting-started example
+devexample02  java url request
+devexample03  two screen example with url request
+
 
