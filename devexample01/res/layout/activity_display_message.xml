@@ -9,8 +9,10 @@
     tools:context=".DisplayMessageActivity" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/display_message"
         android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:hint="@string/display_message"
         android:text="@string/hello_world" />
 
 </RelativeLayout>

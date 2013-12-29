@@ -2,31 +2,48 @@ package com.example.myfirstprj;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+import android.text.method.SingleLineTransformationMethod;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 
 public class DisplayMessageActivity extends Activity {
+	
+	private TextView _txtview = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		////setContentView(R.layout.activity_display_message);
+		setContentView(R.layout.activity_display_message);
 		
 	    // Get the message from the intent
 	    Intent intent = getIntent();
 	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
 	    // Create the text view
-	    TextView textView = new TextView(this);
-	    textView.setTextSize(40);
-	    textView.setText(message);
+	    if ( _txtview == null ) {
+	        //_txtview = new TextView(this);
+	    	_txtview = (TextView) findViewById(R.id.display_message);
+	        _txtview.setTextSize(14);
+	        _txtview.setHorizontalScrollBarEnabled(true);
+	        _txtview.setVerticalScrollBarEnabled(true);
+	        
+	        //_txtview.setTransformationMethod(
+	        //					SingleLineTransformationMethod.getInstance());
+	        //this method does not work. instead set it in xml:
+	        //      android:layout_width="fill_parent"
+	        //      android:singleLine="true"
+	        
+	    }
+	    _txtview.setText(message);
 
 	    // Set the text view as the activity layout
-	    setContentView(textView);
+	    //setContentView(_txtview);
 		
 		// Show the Up button in the action bar.
 		setupActionBar();
@@ -42,6 +59,13 @@ public class DisplayMessageActivity extends Activity {
 		}
 	}
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.display_message, menu);
+        return true;
+    }
+    
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -55,6 +79,20 @@ public class DisplayMessageActivity extends Activity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+        case R.id.action_search:
+            //openSearch();
+        	if ( _txtview != null ) {
+        		_txtview.setText( _txtview.getText() + " search ");
+        	}
+            return true;
+        case R.id.action_settings:
+            //openSettings();
+        	if ( _txtview != null ) {
+        		_txtview.setText( _txtview.getText() + "\n");
+        	}
+            return true;
+        default:
+        	break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
