@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CMyApp</string>
+    <string name="action_search">Searching</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_send">Send</string>
+    <string name="display_message">Your message shown here</string>
+    <string name="edit_message">Enter a message to send</string>
+    <string name="title_activity_main">CMyMain</string>
+    <string name="title_activity_display_message">CMy Message</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
