@@ -5,16 +5,14 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.support.v4.app.NavUtils;
-import android.text.method.SingleLineTransformationMethod;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 
 public class DisplayMessageActivity extends Activity {
 	
-	private TextView _txtview = null;
+	private EditText _txtview = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +26,7 @@ public class DisplayMessageActivity extends Activity {
 	    // Create the text view
 	    if ( _txtview == null ) {
 	        //_txtview = new TextView(this);
-	    	_txtview = (TextView) findViewById(R.id.display_message);
+	    	_txtview = (EditText) findViewById(R.id.display_message);
 	        _txtview.setTextSize(14);
 	        _txtview.setHorizontalScrollBarEnabled(true);
 	        _txtview.setVerticalScrollBarEnabled(true);
