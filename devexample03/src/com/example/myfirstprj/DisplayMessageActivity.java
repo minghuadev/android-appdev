@@ -27,11 +27,13 @@ public class DisplayMessageActivity extends Activity {
 	private TextView _txtview = null;
 	private boolean  _allownet = false;
 	private String   _setmsg  = null;
+	private String   _txtwrap = null;
+	private String   _fntsz   = null;
+			
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_display_message);
 
 		// Allow network blocking access... change api min from 8 to 9
 		  StrictMode.ThreadPolicy policy = new StrictMode.
@@ -43,29 +45,49 @@ public class DisplayMessageActivity extends Activity {
 	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 	    _setmsg = message;
 
+	    _txtwrap = intent.getStringExtra(MainActivity.EXTRA_WRAPTEXT);
+	    						/* yes or no */
+	    _fntsz = intent.getStringExtra(MainActivity.EXTRA_FONTSIZE);
+	    						/* small, medium, large */
+	    
+	    boolean usexml = false;
+	    if ( ! _txtwrap.equalsIgnoreCase("yes") ) {
+	    	usexml = true;
+		    setContentView(R.layout.activity_display_message);
+	    }
+	    
 	    // Create the text view
 	    if ( _txtview == null ) {
-	        //_txtview = new TextView(this);
-	    	_txtview = (TextView) findViewById(R.id.display_message);
-	        _txtview.setTextSize(12);
-	        _txtview.setHorizontalScrollBarEnabled(true);
-	        _txtview.setVerticalScrollBarEnabled(true);
-	        _txtview.setMovementMethod(new ScrollingMovementMethod());
-	        
-	        //_txtview.setTransformationMethod(
-	        //					SingleLineTransformationMethod.getInstance());
-	        //this method does not work. instead set it in xml:
-	        //      android:layout_width="fill_parent"
-	        //      android:singleLine="true"
+	    	if ( usexml ) {
+	    	    _txtview = (TextView) findViewById(R.id.display_message);
+	    	} else {
+	            _txtview = new TextView(this);
+	    	    // Set the text view as the activity layout
+	    	    setContentView(_txtview);
+	    	}
 	        
 	    }
-	    _txtview.setText(message);
+        _txtview.setHorizontalScrollBarEnabled(true);
+        _txtview.setVerticalScrollBarEnabled(true);
+        _txtview.setMovementMethod(new ScrollingMovementMethod());
+
+        if ( _fntsz.equalsIgnoreCase("small") ) {
+            _txtview.setTextSize(12);
+        } else if ( _fntsz.equalsIgnoreCase("medium") ) {
+            _txtview.setTextSize(14);
+        } else if ( _fntsz.equalsIgnoreCase("large") ) {
+            _txtview.setTextSize(16);
+        } else if ( _fntsz.equalsIgnoreCase("xlarge") ) {
+            _txtview.setTextSize(20);
+        } else {
+            _txtview.setTextSize(24);
+        }
+        
+	    _txtview.setText(message + " " + _txtwrap + " " + _fntsz);
 	    if ( message.contains(passcode) ) {
 	    	_allownet = true;
 	    }
 
-	    // Set the text view as the activity layout
-	    //setContentView(_txtview);
 		
 		// Show the Up button in the action bar.
 		setupActionBar();
