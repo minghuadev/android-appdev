@@ -1,0 +1,22 @@
+
+
+[@localhost My02Prj]$ android create project --target 1 --name AMyApp --path $HOME/My02Prj --activity MainAct --package com.examples.amyapp
+
+Created directory /home/me/My02Prj/src/com/examples/amyapp
+Added file /home/me/My02Prj/src/com/examples/amyapp/MainAct.java
+Created directory /home/me/My02Prj/res
+Created directory /home/me/My02Prj/bin
+Created directory /home/me/My02Prj/libs
+Created directory /home/me/My02Prj/res/values
+Added file /home/me/My02Prj/res/values/strings.xml
+Created directory /home/me/My02Prj/res/layout
+Added file /home/me/My02Prj/res/layout/main.xml
+Created directory /home/me/My02Prj/res/drawable-xhdpi
+Created directory /home/me/My02Prj/res/drawable-hdpi
+Created directory /home/me/My02Prj/res/drawable-mdpi
+Created directory /home/me/My02Prj/res/drawable-ldpi
+Added file /home/me/My02Prj/AndroidManifest.xml
+Added file /home/me/My02Prj/build.xml
+Added file /home/me/My02Prj/proguard-project.txt
+
+
