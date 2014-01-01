@@ -1,6 +1,9 @@
 package com.example.myfirstprj;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
@@ -86,6 +90,21 @@ public class DisplayMessageActivity extends Activity {
 	    _txtview.setText(message + " " + _txtwrap + " " + _fntsz);
 	    if ( message.contains(passcode) ) {
 	    	_allownet = true;
+	    	
+    		String filename = "myappfile";
+    		try {
+        	  FileInputStream inputStream;
+        	  byte [] buf = new byte[16000];
+    		  inputStream = openFileInput(filename);
+    		  int sz = inputStream.read(buf, 0, 16000);
+    		  inputStream.close();
+    		  if ( sz > 0 ) {
+    			    _txtview.setText(" " + _txtwrap + " " + _fntsz + "\n\n" + 
+    			    					new String(buf));
+    		  }
+    		} catch (Exception e) {
+    		  e.printStackTrace();
+    		}	        		
 	    }
 
 		
@@ -133,6 +152,16 @@ public class DisplayMessageActivity extends Activity {
 	        		Netreq nrq = new Netreq();
 	        		String result = nrq.getData();
 	        		_txtview.setText( s1 + "\n\n" + result + "\n");
+	        		
+	        		String filename = "myappfile";
+	        		try {
+		        	  FileOutputStream outputStream;
+	        		  outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+	        		  outputStream.write(result.getBytes());
+	        		  outputStream.close();
+	        		} catch (Exception e) {
+	        		  e.printStackTrace();
+	        		}	        		
         		} else {
 	        		_txtview.setText( _txtview.getText() + "\n\n" + 
 	        							"No net access allowed" + "\n");
