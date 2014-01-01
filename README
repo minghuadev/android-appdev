@@ -7,9 +7,10 @@ adt-bundle-linux-x86-20131030.zip
 modify adt-bundle-linux-x86-20131030/eclipse/eclipse.ini to have this: 
 -XX:MaxHeapSize=256M
 
-For ant build: 
-Just edit "Android SDK\platform-tools\dx.bat" and change "set defaultXmx=-Xmx1024M to set defaultXmx=-Xmx512M"
-Or modify sdk/build-tools/android-4.4/dx to change the same.
+For ant build: modify sdk/build-tools/android-4.4/dx to change the heap size
+##defaultMx="-Xmx1024M"
+defaultMx="-Xmx256M"
+
 
 
 Run:
@@ -24,5 +25,8 @@ Directories:
 devexample01  two screen android getting-started example
 devexample02  java url request
 devexample03  two screen example with url request
+
+devexample04  ant build project
+
 
 
