@@ -8,6 +8,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -90,7 +94,7 @@ public class DisplayMessageActivity extends Activity {
 	    if ( message.contains(passcode) ) {
 	    	_allownet = true;
 	    	
-    		String filename = "myappfile";
+    		String filename = MainActivity.APP_DATA_FILE_NAME;
     		try {
         	  FileInputStream inputStream;
         	  byte [] buf = new byte[16000];
@@ -150,9 +154,14 @@ public class DisplayMessageActivity extends Activity {
             		_txtview.setText( s1);
 	        		Netreq nrq = new Netreq();
 	        		String result = nrq.getData();
+        		    Date date = new Date();
+        		    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", 
+        				  											Locale.US);
+        		    String datestr = df.format(date);
+        		    result = result + "\n" + datestr;
 	        		_txtview.setText( s1 + "\n\n" + result + "\n");
 	        		
-	        		String filename = "myappfile";
+	        		String filename = MainActivity.APP_DATA_FILE_NAME;
 	        		try {
 		        	  FileOutputStream outputStream;
 	        		  outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
@@ -200,7 +209,7 @@ public class DisplayMessageActivity extends Activity {
 	        String s1 = "{\"_value\":\"";
 	        String s2 = "\"}";
 	        StringBuilder retsb = new StringBuilder();
-	        if ( rs.toLowerCase().startsWith("error:") ) {
+	        if ( rs.toLowerCase(Locale.US).startsWith("error:") ) {
 	            retsb.append(rs);
 	        } else if (rs.startsWith(s1)  && rs.endsWith(s2)) {
 	            String body2 = rs.substring( s1.length() );

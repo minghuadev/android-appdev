@@ -85,6 +85,14 @@
 	        android:text="Extra Large Font" />
         
       </RadioGroup>
+
+      <TextView
+        android:id="@+id/main_debug_message"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:hint="Debug Message"
+        android:typeface="monospace"
+        android:text="@string/hello_world" />
       
   </LinearLayout>
 </LinearLayout>

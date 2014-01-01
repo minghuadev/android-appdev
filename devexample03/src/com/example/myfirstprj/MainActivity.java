@@ -1,5 +1,8 @@
 package com.example.myfirstprj;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,17 +12,31 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 	public final static String EXTRA_WRAPTEXT = "com.example.myfirstapp.WRAPTEXT";
 	public final static String EXTRA_FONTSIZE = "com.example.myfirstapp.FONTSIZE";
+	public final static String APP_DATA_FILE_NAME = "myappfile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+		String filename = APP_DATA_FILE_NAME;
+		try {
+    	  File file = new File(getFilesDir(), filename);
+    	  if ( file.exists() ) {
+    		  file.delete();
+    		  TextView tv = (TextView)findViewById(R.id.main_debug_message);
+    		  tv.setText("app file deleted");
+    	  }
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}	        		
     }
 
 
