@@ -1,7 +1,6 @@
 package com.example.myfirstprj;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -87,7 +86,7 @@ public class DisplayMessageActivity extends Activity {
             _txtview.setTextSize(24);
         }
         
-	    _txtview.setText(message + " " + _txtwrap + " " + _fntsz);
+	    _txtview.setText(_setmsg + " " + _txtwrap + " " + _fntsz + " " + getFilesDir());
 	    if ( message.contains(passcode) ) {
 	    	_allownet = true;
 	    	
@@ -100,7 +99,7 @@ public class DisplayMessageActivity extends Activity {
     		  inputStream.close();
     		  if ( sz > 0 ) {
     			    _txtview.setText(" " + _txtwrap + " " + _fntsz + "\n\n" + 
-    			    					new String(buf));
+    			    					new String(buf) + "\n");
     		  }
     		} catch (Exception e) {
     		  e.printStackTrace();
@@ -146,7 +145,7 @@ public class DisplayMessageActivity extends Activity {
             //openSearch();
         	if ( _txtview != null ) {
         	    String s1 = " search ";
-        	    if ( _setmsg != null ) s1 = _setmsg + s1;
+        	    //if ( _setmsg != null ) s1 = _setmsg + s1;
         		if ( _allownet ) {
             		_txtview.setText( s1);
 	        		Netreq nrq = new Netreq();
