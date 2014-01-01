@@ -18,6 +18,13 @@ Run:
 
 Put jre path to the PATH, and run eclipse.
 
+For ant build, add these to the PATH: 
+  .../sdk/platform-tools, 
+  .../sdk/tools,
+  .../sdk/platform-tools,
+  .../ant/bin
+
+
 
 Directories:
 ==============
