@@ -1,0 +1,25 @@
+
+Alcatel One Touch Fire Hacking (Mini) Guide
+  http://k.japko.eu/alcatel-otf-hackers-guide-1.html
+
+
+The Firefox OS Platform
+  https://developer.mozilla.org/en-US/Firefox_OS/Platform
+
+
+Firefox OS Build Prerequisits
+  https://developer.mozilla.org/en-US/Firefox_OS/Firefox_OS_build_prerequisites
+
+
+Preparing for Your First B2G Build
+  https://developer.mozilla.org/en-US/Firefox_OS/Preparing_for_your_first_B2G_build
+
+
+Code Name
+  https://developer.mozilla.org/en-US/Firefox_OS/Phones
+
+
+Building Firefox OS
+  https://developer.mozilla.org/en-US/Firefox_OS/Building
+
+
