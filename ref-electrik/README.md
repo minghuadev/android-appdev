@@ -36,7 +36,7 @@ To create the file, cd into the data directory and run :
 
 Or simply 
 
-    zip -p -r ../bootanimation.zip *
+    zip -0 -r ../bootanimation.zip *
 
 In an example "desc.txt" :
 
