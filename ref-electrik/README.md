@@ -60,3 +60,11 @@ To apply, use
     ./adb push bootanimation.zip /system/media
 
 
+# Google Play : 
+
+http://getandroidstuff.com/download-google-play-store-designed-jelly-bean/
+Download Latest Google Play Store apk v4.5.10
+Dec 7 2013 by Khaled Md. Shariar
+
+
+
