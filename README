@@ -88,12 +88,14 @@ Reconnect the phone.
 
 Run adb devices to confirm that now it has permission to access the phone.
 
-Please note that it's possible to use , USER="$LOGINNAME" instead of , MODE="0666" in 
-the .rules file, substituting $LOGINNAME for your login name, i.e. what id -nu prints.
+Please note that it's possible to use , USER="$LOGINNAME" instead of , 
+MODE="0666" in the .rules file, substituting $LOGINNAME for your login 
+name, i.e. what id -nu prints.
 
-In some cases it can be necessary to give the udev rules file a name that sorts close 
-to the end, such as z51-android.rules
+In some cases it can be necessary to give the udev rules file a name that 
+sorts close to the end, such as z51-android.rules
 
-For Ubuntu Precise the filename is 70-android.rules as per this post: esausilva.com/2010/05/13/…. 
+For Ubuntu Precise the filename is 70-android.rules as per this post: 
+esausilva.com/2010/05/13/…. 
 
 
