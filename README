@@ -42,6 +42,8 @@ Adb udev rules:
 
 http://stackoverflow.com/questions/9210152/set-up-device-for-development-no-permissions
 
+Put this into a file /tmp/android.rules:
+
   SUBSYSTEM=="usb", ATTRS{idVendor}=="0bb4", MODE="0666"
   SUBSYSTEM=="usb", ATTRS{idVendor}=="0e79", MODE="0666"
   SUBSYSTEM=="usb", ATTRS{idVendor}=="0502", MODE="0666"
